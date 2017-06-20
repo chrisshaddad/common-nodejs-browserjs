@@ -1,0 +1,13 @@
+.container {
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: beige;
+  height: 100%;
+}
+.taskName{
+display:inline;}
+.taskStatus{
+display:inline;}
+.space{
+display:inline;}

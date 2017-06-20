@@ -1,8 +1,6 @@
 let taskList = new Array();
 
-while (taskList.length) {
-    taskList.pop()
-}
+
 
 // CRUD Create Read Update Delete
 
