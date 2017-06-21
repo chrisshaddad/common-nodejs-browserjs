@@ -1,9 +1,15 @@
+
+(function (factory) {
+if (typeof exports === 'object') {
+        // Node, CommonJS-like
+        module.exports = factory();
+    } else {
+       
+        window.common=factory()
+
+    }
+}(function () {
 let taskList = new Array();
-
-
-
-// CRUD Create Read Update Delete
-
 function addTask(x) {
     if (!(x == "" || x == null)) {
         var task = {
@@ -48,8 +54,35 @@ function getTasks() {
     return final
 }
 
-module.exports={
-    taskList:taskList,
+
+ function toStr(){
+    return JSON.stringify(taskList);
+ }
+ function setTaskList(x){
+    taskList = JSON.parse(x);
+ } 
+ function emptyTasks(){
+     taskList=[];
+ }
+ function remove(x){
+     if(x==null){
+         return taskList.pop();
+     }
+     else{
+         return taskList.splice(x, 1);
+     }
+ }
+
+ function lengthList(){
+     return taskList.length;
+ }
+
+return{
+    remove:remove,
+    lengthList:lengthList,
+    emptyTasks:emptyTasks,
+    setTaskList:setTaskList,
+    toStr:toStr,
     addTask:addTask,
     deleteTask:deleteTask,
     editTask:editTask,
@@ -57,3 +90,6 @@ module.exports={
     undone:undone,
     getTasks:getTasks
 }
+
+
+}));

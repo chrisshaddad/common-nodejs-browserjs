@@ -86,12 +86,12 @@ function quit() {
 }
 function remove(x) {
   if (x == null) {
-    console.log('\nremoved task:"' + common.taskList.pop().name + '"\n');
+    console.log('\nremoved task:"' + common.remove(x).name + '"\n');
   } else if (/\d+/.test(x)) {
     if (x < 0 || (x >= common.taskList.length + 1) || isNaN(x)) {
       console.log("\nindex not in array or you haven't entered a number\n");
     } else {
-      console.log('removed task: "' + common.taskList.splice(x, 1).name + '"\n');
+      console.log('removed task: "' + common.remove(x).name + '"\n');
     }
   }
 }
@@ -152,8 +152,8 @@ function save() {
 
 function saveFile(name) {
   console.log('saving to', name)
-  if (common.taskList.length > 0) {
-    var str = JSON.stringify(common.taskList);
+  if (common.lengthList() > 0) {
+    var str = common.toStr();
     fs.writeFile(name, str, {
       encoding: 'utf8'
     }, function (err) {
@@ -183,7 +183,7 @@ function loadFile(name) {
   console.log("\nfile is loaded\n")
   fs.readFile(name, 'utf8', function (err, data) {
     if (err) throw err;
-    common.taskList = JSON.parse(data);
+    common.saveTaskList(data);
   });
 }
 
